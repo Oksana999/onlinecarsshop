@@ -26,24 +26,35 @@ function main() {
         carDiv.appendChild(elementCarPrice)
     }
 
-    var car = {
-        model: "BMW",
-        mark: "XT5",
-        buildYear: 2005,
-        carPrice: 50000,
-        imageName: "https://www.cstatic-images.com/stock/900x600/235994.jpg"
-    };
-    var carDiv = document.getElementById('car')
-    addCar(carDiv, car);
-
-    var carMercedes = {
-        model: "Mercedes-Benz",
-        mark: "W213",
-        buildYear: 2019,
-        carPrice: 55000,
-        imageName: "https://upload.wikimedia.org/wikipedia/commons/9/9b/2019_Mercedes-Benz_E220d_SE_Automatic_2.0_Front.jpg"
-    };
-    var carMercedesDiv = document.getElementById('carMercedes')
-    addCar(carMercedesDiv, carMercedes);
-
+    var cars = [
+        {
+            model: "BMW",
+            mark: "XT5",
+            buildYear: 2005,
+            carPrice: 50000,
+            imageName: "https://www.cstatic-images.com/stock/900x600/235994.jpg"
+        },
+        {
+            model: "Mercedes-Benz",
+            mark: "W213",
+            buildYear: 2019,
+            carPrice: 55000,
+            imageName: "https://upload.wikimedia.org/wikipedia/commons/9/9b/2019_Mercedes-Benz_E220d_SE_Automatic_2.0_Front.jpg"
+        },
+        {
+            model: "Audi",
+            mark: "A8",
+            buildYear: 2018,
+            carPrice: 30000,
+            imageName: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Audi_A8_D5_IMG_0066.jpg"
+        }
+    ];
+    var carsDiv = document.getElementById('cars')
+    var i;
+    for(i = 0; i < cars.length; i++){
+        var car = cars[i];
+        var carDiv = document.createElement("div");
+        addCar(carDiv, car);
+        carsDiv.appendChild(carDiv)
+    }
 }
