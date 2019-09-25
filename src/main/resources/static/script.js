@@ -92,6 +92,11 @@ function formAddCarOnClick() {
         carPrice: carPrice,
         imageName: imageName
     };
+    var cars = loadCars();
+    cars.push(car);
+
+    localStorage.setItem("cars", JSON.stringify(cars));
+
     var carDiv = document.createElement("div");
     addCar(carDiv, car);
     carsDiv.appendChild(carDiv)
