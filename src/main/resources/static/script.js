@@ -23,21 +23,49 @@ function addCar(carDiv, car) {
     var elementCarPrice = document.createElement("div")
     elementCarPrice.appendChild(textCarPrice)
     carDiv.appendChild(elementCarPrice)
+
+    var textDeleteCar = document.createTextNode("Удалить");
+    var elementDeleteCar = document.createElement("button")
+    elementDeleteCar.appendChild(textDeleteCar)
+    elementDeleteCar.setAttribute("onclick", "deleteCar(" + car.id + ")")
+    carDiv.appendChild(elementDeleteCar)
+
+}
+
+
+function deleteCar(carId) {
+    console.log(carId);
+    var cars = loadCars();
+    var deleteCarById = function (car, index) {
+        if (carId == car.id) {
+            console.log(carId);
+            cars.splice(index, 1)
+        }
+    };
+    console.log(cars.length);
+    cars.forEach(deleteCarById)
+    console.log(cars.length);
+
+
+    localStorage.setItem("cars", JSON.stringify(cars));
+    location.reload(true); // Обновление страницы F5
 }
 
 function loadCars() {
     var existedCars = localStorage.getItem("cars");
-    if(existedCars){
+    if ((existedCars) && (existedCars.length > 5)) {
         return JSON.parse(existedCars);
-    }else{
-        return  [
+    } else {
+        return [
             {
+                id: 111,
                 model: "BMW",
                 mark: "XT5",
                 buildYear: 2005,
                 carPrice: 50000,
                 imageName: "https://www.cstatic-images.com/stock/900x600/235994.jpg"
             }, {
+                id: 222,
                 model: "BMW",
                 mark: "XT5",
                 buildYear: 2005,
@@ -45,6 +73,7 @@ function loadCars() {
                 imageName: "https://www.cstatic-images.com/stock/900x600/235994.jpg"
             },
             {
+                id: 333,
                 model: "Mercedes-Benz",
                 mark: "W213",
                 buildYear: 2019,
@@ -52,6 +81,7 @@ function loadCars() {
                 imageName: "https://upload.wikimedia.org/wikipedia/commons/9/9b/2019_Mercedes-Benz_E220d_SE_Automatic_2.0_Front.jpg"
             },
             {
+                id: 555,
                 model: "Audi",
                 mark: "A8",
                 buildYear: 2018,
@@ -77,7 +107,21 @@ function main() {
     }
 }
 
+function carDeleteOnClick() {
+    // var cars = loadCars();
+    // var carsDiv = document.getElementById("cars")
+    // var i;
+    // for(i = 0; i < cars.length; i++){
+    //     var carDiv = document.
+    // }
+    // cars.delete(car);
+    //
+    // localStorage.setItem("cars", JSON.stringify(cars));
+
+}
+
 function formAddCarOnClick() {
+    var carId = Math.floor(Math.random() * 10000)
     var carsDiv = document.getElementById('cars')
     var model = document.getElementById('carModelForm').value;
     var mark = document.getElementById('carMarkForm').value;
@@ -86,6 +130,7 @@ function formAddCarOnClick() {
     var imageName = document.getElementById('imageName').value;
 
     var car = {
+        id: carId,
         model: model,
         mark: mark,
         buildYear: buildYear,
