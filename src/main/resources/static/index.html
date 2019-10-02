@@ -27,8 +27,24 @@
     <br>
     <button onclick="formAddCarOnClick()">Add car</button>
 </div>
-<div id="carDelete">
-    <button onclick="carDeleteOnClick()">Delete car</button>
+<div id="saveCar">
+    <input type="hidden" id="carIdChange">
+    <label for="carModelForm">model:</label> <br>
+    <input id="carModelFormNew" type="text" name="modelNew" placeholder="input car model">
+    <br>
+    <label for="carMarkForm">mark:</label> <br>
+    <input id="carMarkFormNew" type="text" name="markNew" placeholder="input car mark">
+    <br>
+    <label for="carBuildYear">carBuildYear:</label> <br>
+    <input id="carBuildYearNew" type="text" name="BuildYearNew" placeholder="input car build Year">
+    <br>
+    <label for="carPrice">carPrice:</label> <br>
+    <input id="carPriceNew" type="text" name="carPriceNew" placeholder="input car Price">
+    <br>
+    <label for="imageName">imageName:</label> <br>
+    <input id="imageNameNew" type="text" name="imageNameNew" placeholder="input image Name">
+    <br>
+    <button onclick="saveCarButton()">Save</button>
 </div>
 </body>
 </html>

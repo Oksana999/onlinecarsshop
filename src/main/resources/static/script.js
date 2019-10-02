@@ -154,5 +154,20 @@ function formAddCarOnClick() {
 
 
 function saveCar(carId) {
-    alert(carId)
+    var cars = loadCars();
+    console.log(cars.length);
+    cars.forEach(function (car, index) {
+        if (carId == car.id) {
+            document.getElementById('carIdChange').value = car.id;
+            document.getElementById('carModelFormNew').value = car.model;
+            document.getElementById('carMarkFormNew').value = car.mark;
+            document.getElementById('carBuildYearNew').value = car.buildYear;
+            document.getElementById('carPriceNew').value = car.carPrice;
+            document.getElementById('imageNameNew').value = car.imageName;
+        }
+    });
+
+
+    // localStorage.setItem("cars", JSON.stringify(cars));
+    // location.reload(true); // Обновление страницы F5
 }
