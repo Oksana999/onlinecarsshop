@@ -27,7 +27,7 @@ function addCar(carDiv, car) {
     var textDeleteCar = document.createTextNode("Удалить");
     var elementDeleteCar = document.createElement("button")
     elementDeleteCar.appendChild(textDeleteCar)
-    elementDeleteCar.setAttribute("onclick", "deleteCar(" + car.id + ")")
+    elementDeleteCar.setAttribute("onclick", "deleteCarButton(" + car.id + ")")
     carDiv.appendChild(elementDeleteCar)
 
     var textSaveCar = document.createTextNode("Change data of car");
@@ -37,23 +37,20 @@ function addCar(carDiv, car) {
     carDiv.appendChild(elementSaveCar)
 }
 
+function deleteCarButton(carId) {
+    deleteCar(carId)
+    location.reload(true); // Обновление страницы F5
+}
 
 function deleteCar(carId) {
-    console.log(carId);
     var cars = loadCars();
     var deleteCarById = function (car, index) {
         if (carId == car.id) {
-            console.log(carId);
             cars.splice(index, 1)
         }
     };
-    console.log(cars.length);
     cars.forEach(deleteCarById)
-    console.log(cars.length);
-
-
     localStorage.setItem("cars", JSON.stringify(cars));
-    location.reload(true); // Обновление страницы F5
 }
 
 function loadCars() {
@@ -112,19 +109,6 @@ function main() {
     }
 }
 
-function carDeleteOnClick() {
-    // var cars = loadCars();
-    // var carsDiv = document.getElementById("cars")
-    // var i;
-    // for(i = 0; i < cars.length; i++){
-    //     var carDiv = document.
-    // }
-    // cars.delete(car);
-    //
-    // localStorage.setItem("cars", JSON.stringify(cars));
-
-}
-
 function formAddCarOnClick() {
     var carId = Math.floor(Math.random() * 10000)
     var carsDiv = document.getElementById('cars')
@@ -144,7 +128,6 @@ function formAddCarOnClick() {
     };
     var cars = loadCars();
     cars.push(car);
-
     localStorage.setItem("cars", JSON.stringify(cars));
 
     var carDiv = document.createElement("div");
@@ -155,7 +138,6 @@ function formAddCarOnClick() {
 
 function saveCar(carId) {
     var cars = loadCars();
-    console.log(cars.length);
     cars.forEach(function (car, index) {
         if (carId == car.id) {
             document.getElementById('carIdChange').value = car.id;
@@ -166,8 +148,25 @@ function saveCar(carId) {
             document.getElementById('imageNameNew').value = car.imageName;
         }
     });
+}
 
-
-    // localStorage.setItem("cars", JSON.stringify(cars));
-    // location.reload(true); // Обновление страницы F5
+function saveCarButton() {
+    var carId = document.getElementById('carIdChange').value;
+    var model = document.getElementById('carModelFormNew').value;
+    var mark = document.getElementById('carMarkFormNew').value;
+    var buildYear = document.getElementById('carBuildYearNew').value;
+    var carPrice = document.getElementById('carPriceNew').value;
+    var imageName = document.getElementById('imageNameNew').value;
+    deleteCar(carId)
+    var car = {
+        id: carId,
+        model: model,
+        mark: mark,
+        buildYear: buildYear,
+        carPrice: carPrice,
+        imageName: imageName
+    };
+    var cars = loadCars();
+    cars.push(car);
+    localStorage.setItem("cars", JSON.stringify(cars));
 }
