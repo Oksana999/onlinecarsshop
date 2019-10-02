@@ -30,6 +30,11 @@ function addCar(carDiv, car) {
     elementDeleteCar.setAttribute("onclick", "deleteCar(" + car.id + ")")
     carDiv.appendChild(elementDeleteCar)
 
+    var textSaveCar = document.createTextNode("Change data of car");
+    var elementSaveCar = document.createElement("button")
+    elementSaveCar.appendChild(textSaveCar)
+    elementSaveCar.setAttribute("onclick", "saveCar("+car.id+  ")")
+    carDiv.appendChild(elementSaveCar)
 }
 
 
@@ -145,4 +150,9 @@ function formAddCarOnClick() {
     var carDiv = document.createElement("div");
     addCar(carDiv, car);
     carsDiv.appendChild(carDiv)
+}
+
+
+function saveCar(carId) {
+    alert(carId)
 }
